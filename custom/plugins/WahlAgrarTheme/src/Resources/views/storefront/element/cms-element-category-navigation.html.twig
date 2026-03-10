@@ -1,0 +1,43 @@
+{% sw_extends '@WahlBaseTheme/storefront/element/cms-element-category-navigation.html.twig' %}
+
+{% block element_category_navigation %}
+    {% set activeCategory = element.data.active ?? page.header.navigation.active ?? null %}
+    {% set navigation = page.header.navigation.tree ?? element.data.tree ?? {} %}
+
+    {% if not activeCategory or navigation is empty %}
+        {{ parent() }}
+    {% else %}
+
+        {% set rootId = null %}
+
+        {# Fall A: aktive Kategorie ist selbst Level-1 #}
+        {% if navigation[activeCategory.id] is defined %}
+            {% set rootId = activeCategory.id %}
+        {% else %}
+            {# Fall B: erste Kategorie im Path, die im Tree existiert #}
+            {% set pathIds = activeCategory.path ? activeCategory.path|trim('|')|split('|') : [] %}
+            {% for id in pathIds %}
+                {% if navigation[id] is defined %}
+                    {% set rootId = id %}
+                    {% break %}
+                {% endif %}
+            {% endfor %}
+        {% endif %}
+
+        {% if not rootId %}
+            {{ parent() }}
+        {% else %}
+            {% set rootItem = navigation[rootId] %}
+            {% set filteredTree = { (rootId): rootItem } %}
+
+            <div class="cms-element-{{ element.type }}">
+                <div class="category-navigation-box">
+                    {% sw_include '@Storefront/storefront/layout/sidebar/category-navigation.html.twig' with {
+                        navigationTree: filteredTree,
+                        currentCategory: rootItem.category
+                    } %}
+                </div>
+            </div>
+        {% endif %}
+    {% endif %}
+{% endblock %}

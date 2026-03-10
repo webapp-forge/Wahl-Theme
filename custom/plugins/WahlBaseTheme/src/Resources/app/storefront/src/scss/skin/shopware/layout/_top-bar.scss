@@ -1,0 +1,29 @@
+.top-bar {
+  background-color: var(--wahl-color-primary);
+  color: var(--wahl-color-primary-contrast);
+  padding: 8px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  font-size: 14px;
+}
+
+.wahl-topbar__inner {
+  padding: 0;
+}
+
+.top-bar a,
+.top-bar strong,
+.top-bar .top-bar-nav-link {
+  color: var(--wahl-color-primary-contrast);
+}
+
+@include media-breakpoint-down(lg) {
+  .topbar-phone-btn {
+    padding-right: 20px;
+  }
+
+  .topbar-phone-btn svg {
+    width: 30px;
+    height: 30px;
+    stroke: #fff;
+  }
+}

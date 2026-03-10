@@ -1,0 +1,12 @@
+/* scaffold: skin/shopware/page/account/_aside.scss
+   Plugin Theme: WahlBaseTheme
+   Add your rules here. This file is NOT imported unless it contains real content.
+*/
+
+.account-menu-dropdown {
+  border: 1px solid var(--wahl-color-border);
+}
+
+.list-group-item-action:hover {
+   color: var(--wahl-color-accent);
+}

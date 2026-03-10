@@ -1,0 +1,13 @@
+{
+  "wahl": {
+    "topbar": {
+      "rs-only": "TODO"
+    },
+    "rs": {
+      "account": {
+        "loginSubmit": "Login",
+        "orRegisterLink": "> EIN KONTO ERSTELLEN"
+      }
+    }
+  }
+}

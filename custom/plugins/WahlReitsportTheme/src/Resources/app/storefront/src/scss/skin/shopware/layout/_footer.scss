@@ -1,0 +1,19 @@
+/* scaffold: skin/shopware/layout/_footer.scss
+   Plugin Theme: WahlReitsportTheme
+   Add your rules here. This file is NOT imported unless it contains real content.
+*/
+
+.footer-bottom {
+   color: rgba(0, 0, 0, 0.6);
+   background-color: #fff;
+}
+
+.footer-bottom a {
+   color: rgba(0, 0, 0, 0.6);
+}
+
+@include media-breakpoint-down(md) {
+   .footer-bottom {
+      text-align: left;
+   }
+}

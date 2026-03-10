@@ -1,0 +1,28 @@
+/* scaffold: component/_category-navigation.scss
+   Plugin Theme: WahlAgrarTheme
+   Add your rules here. This file is NOT imported unless it contains real content.
+*/
+
+/* side menu adjustments */
+.category-navigation.level-0>.category-navigation-entry>.category-navigation-link {
+  color: var(--wahl-color-primary);
+  font-size: 16px;
+}
+.category-navigation.level-0 > .category-navigation-entry {
+  border-bottom: none;
+}
+.category-navigation.level-1 .category-navigation-entry.is-active {
+  background: var(--wahl-color-bg);
+  padding-bottom: 1rem;
+}
+.category-navigation.level-1 .category-navigation-link {
+  color: #000;
+  font-size: 16px;
+  font-weight: bold;
+}
+.category-navigation.level-2 .category-navigation-link {
+  color: var(--wahl-color-primary);
+  font-size: 16px;
+  font-weight: normal;
+}
+

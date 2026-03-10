@@ -1,0 +1,20 @@
+/* scaffold: skin/shopware/base/_base.scss
+   Plugin Theme: WahlBaseTheme
+   Add your rules here. This file is NOT imported unless it contains real content.
+*/
+
+a {
+   color: var(--wahl-color-accent);
+   text-decoration: none;
+}
+
+
+/* bootstrap overrides */
+.btn-primary, .btn-outline-primary {
+   background-color: var(--wahl-color-accent);
+   border-color: var(--wahl-color-accent);
+}
+.btn-primary:hover {
+   background-color: var(--wahl-color-accent-highlight);
+   border-color: var(--wahl-color-accent-highlight);
+}

@@ -1,0 +1,81 @@
+/* scaffold: skin/shopware/layout/_footer.scss
+   Plugin Theme: WahlBaseTheme
+   Add your rules here. This file is NOT imported unless it contains real content.
+*/
+
+.footer-main {
+   background-color: var(--wahl-color-primary);
+   color: #fff;
+   font-size: 14px;
+}
+
+.footer-column-headline {
+   color: #fff;
+   font-size: 1rem;
+   text-transform: uppercase;
+}
+
+
+.footer-bottom {
+   background-color: var(--wahl-color-primary);
+   color: #fff;
+}
+
+.footer-bottom .container {
+   padding: 2rem 0;
+}
+
+.footer-link-item>a {
+    color: rgba(255, 255, 255, 0.6);
+    text-decoration: none;
+}
+.footer-link-item>a:hover {
+   color: var(--wahl-color-accent);
+}
+
+.svg-defs {
+   display: none;
+}
+
+@include media-breakpoint-up(md) {
+   .footer-bottom .container {
+      border-top: 1px solid rgba(255, 255, 255, 0.2);
+   }
+}
+
+@include media-breakpoint-down(md) {
+   .footer-column {
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+   }
+   .footer-column-toggle .icon {
+    color: #fff;
+   }
+
+   .footer-bottom .header-logo-main {
+      text-align: left;
+      margin-bottom: 3rem;
+   }
+
+   .footer-bottom .header-logo-picture {
+      margin-left: 0;
+      margin-right: 0;
+   }
+
+   .footer-bottom .header-logo-main-img {
+      max-width: 50vw;  
+      height: auto;
+   }
+
+   .footer-bottom .header-logo-main-link {
+      justify-content: flex-start; 
+   }
+  
+
+   .footer-bottom .row > .col-md-10.d-flex.align-items-center.justify-content-end {
+      justify-content: flex-start;
+   }
+   .footer-bottom .footer-vat {
+        text-align: left;
+   }
+}
+

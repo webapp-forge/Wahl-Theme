@@ -1,0 +1,26 @@
+{
+  "wahl": {
+    "topbar": {
+      "phone": "TODO",
+      "hours": "TODO",
+      "promo": "TODO"
+    },
+    "offcanvas": {
+      "header": {
+        "menu": "TODO"
+      }
+    },
+    "footer": {
+      "shippng": {
+        "content": "TODO"
+      },
+      "title": {
+        "payment": "TODO",
+        "shipping": "TODO"
+      },
+      "shipping": {
+        "content": "TODO"
+      }
+    }
+  }
+}

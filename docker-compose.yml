@@ -1,0 +1,43 @@
+services:
+  db:
+    image: mysql:8.0
+    command: --default-authentication-plugin=mysql_native_password
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: shopware
+      MYSQL_USER: shopware
+      MYSQL_PASSWORD: shopware
+    volumes:
+      - db-data:/var/lib/mysql
+
+  app:
+    build:
+      context: .
+      args:
+        UID: ${UID}
+        GID: ${GID}
+    #user: "33:33" # bleibt www-data, UID/GID werden im Image angepasst
+    depends_on:
+      - db
+    ports:
+      - "8000:80"
+    environment:
+      APACHE_DOCUMENT_ROOT: /app/public
+    volumes:
+      #- ./:/app
+      #- app-var:/app/var
+      #- ./docker/php/shopware.ini:/usr/local/etc/php/conf.d/99-shopware.ini
+      - ./:/app
+      - app-var:/app/var
+      - app-files:/app/files
+      - app-media:/app/public/media
+      - app-thumbnails:/app/public/thumbnails
+      - app-theme:/app/public/theme
+      - ./docker/php/shopware.ini:/usr/local/etc/php/conf.d/99-shopware.ini
+volumes:
+  db-data:
+  app-var:
+  app-media:
+  app-thumbnails:
+  app-theme:
+  app-files:

@@ -1,0 +1,53 @@
+:root {
+  /* Layout / Container */
+  --wahl-content-max: 1600px;
+  --wahl-content-pad: 20px;
+
+  /* Colors (Basis) */
+  --wahl-color-primary: #0b5ed7;
+  --wahl-color-primary-contrast: #ffffff;
+
+  --wahl-color-accent: #198754;
+  --wahl-color-accent-highlight: #fff;
+
+  --wahl-color-text: #212529;
+  --wahl-color-text-muted: #6c757d;
+  --wahl-color-text-accent: #198754;
+
+  --wahl-color-sale: #e52427;
+
+  --wahl-color-bg: #ffffff;
+  --wahl-color-bg-muted: #f8f9fa;
+  --wahl-color-border: #e0e0e0;
+  --wahl-color-bg-contrast: #525251;
+
+  --wahl-color-separator-line: #d0d0d0;
+
+  --wahl-color-font-inactive: rgba(82, 82, 81, 0.5);
+
+  /* Typography (Basis) */
+  --wahl-font-base: var(--bs-font-sans-serif);
+  --wahl-font-size-base: 16px;
+  --wahl-line-height-base: 1.5;
+
+  /* Spacing */
+  --wahl-space-1: 4px;
+  --wahl-space-2: 8px;
+  --wahl-space-3: 16px;
+  --wahl-space-4: 24px;
+  --wahl-space-5: 32px;
+
+  /* Radius / Layer */
+  --wahl-radius-1: 2px;
+  --wahl-radius-2: 4px;
+  --wahl-radius-3: 8px;
+
+  --wahl-z-header: 100;
+  --wahl-z-overlay: 1000;
+}
+
+@media (max-width: 768px) {
+  :root {
+    --wahl-content-pad: 16px;
+  }
+}

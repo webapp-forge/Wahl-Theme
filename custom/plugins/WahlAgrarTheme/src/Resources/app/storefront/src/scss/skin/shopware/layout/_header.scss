@@ -1,0 +1,38 @@
+/* scaffold: skin/shopware/layout/_header.scss
+   Plugin Theme: WahlAgrarTheme
+   Add your rules here. This file is NOT imported unless it contains real content.
+*/
+
+.header-main {
+  background-color: var(--wahl-color-primary);
+  color: var(--wahl-color-primary-contrast);
+}
+
+/* rounded corners for search input */
+#header-main-search-input {
+  border-radius: 30px 0 0 30px;
+  padding-left: 30px;
+}
+
+.header-search-form .input-group > .header-search-btn {
+  background: #fff;
+  border-radius: 0 30px 30px 0 !important;
+  position: relative; 
+  z-index: 2;
+}
+
+
+.header-close-btn {
+  background-color: white;
+  border-radius: 0 30px 30px 0;
+}
+
+.header-actions-col .header-actions-btn svg {
+    stroke: #fff;
+}
+
+@include media-breakpoint-down(md) {
+    .header-main {
+        border-bottom: 4px solid var(--wahl-color-accent);
+    }
+}

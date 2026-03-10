@@ -1,0 +1,27 @@
+{% sw_extends '@WahlBaseTheme/storefront/layout/header/account-menu.html.twig' %}
+
+{% block layout_header_actions_account_widget_dropdown_header %}
+{% endblock %}
+
+{% block layout_header_actions_account_widget_dropdown_login %}
+    {% if not context.customer %}
+        <div class="account-menu-login">
+            {% block layout_header_actions_account_widget_dropdown_login_login %}
+                <a href="{{ path('frontend.account.login.page') }}"
+                    title="{{ 'wahl.rs.account.loginSubmit'|trans|striptags }}"
+                    class="btn btn-primary account-menu-login-button">
+                    {{ 'wahl.rs.account.loginSubmit'|trans|sw_sanitize }}
+                </a>
+            {% endblock %}
+
+            {% block layout_header_actions_account_widget_dropdown_login_register %}
+                <div class="account-menu-register">
+                    <a href="{{ path('frontend.account.login.page') }}"
+                        title="{{ 'wahl.rs.account.orRegisterLink'|trans|striptags }}">
+                        {{ 'wahl.rs.account.orRegisterLink'|trans|striptags|lower }}
+                    </a>
+                </div>
+            {% endblock %}
+        </div>
+    {% endif %}
+{% endblock %}

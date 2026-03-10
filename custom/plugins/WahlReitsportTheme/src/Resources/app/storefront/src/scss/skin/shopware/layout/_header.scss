@@ -1,0 +1,52 @@
+/* scaffold: skin/shopware/layout/_header.scss
+   Plugin Theme: WahlReitsportTheme
+   Add your rules here. This file is NOT imported unless it contains real content.
+*/
+
+.header-main {
+  background-color: var(--wahl-color-bg);
+}
+.header-actions-btn svg {
+  stroke: var(--wahl-color-bg-contrast);
+}
+.user-badge svg use {
+  stroke: var(--wahl-color-bg);
+}
+.header-cart-total {
+  color: var(--wahl-color-bg-contrast);
+}
+#header-main-search-input {
+  border: none;
+  font-size: 0.875rem;
+}
+.header-search-btn {
+  border: none;
+}
+
+@include media-breakpoint-down(sm) {
+    .header-search-col {
+      border-top: 1px solid rgba(82, 82, 81, 0.1);
+      /*padding: 0px;*/ /* => unstable with sticky + grid + mobile */
+      padding: 0 20px;       
+    }
+    .header-search {
+      margin: 0;
+    }
+    #header-main-search-input {
+      border: none;
+      border-left: 1px solid rgba(82, 82, 81, 0.1);
+    }
+    .header-search-btn {
+      border: none;
+    }
+}
+
+@include media-breakpoint-up(lg) {
+  .header-main .align-items-center {
+    align-items: flex-start;
+  }
+  .header-search .input-group {
+    border: 1px solid rgba(82, 82, 81, 0.2);
+    border-radius: 4px;
+  }
+}

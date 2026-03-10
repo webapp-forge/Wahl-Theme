@@ -1,0 +1,23 @@
+{
+  "wahl": {
+    "topbar": {
+      "phone": "Bestell-Telefon 08374 / 580 93 0",
+      "hours": "Mo - Fr: 08:00 - 16:00",
+      "promo": "**zusätzlich -2% ab 500€ Bestellwert, kostenlose Lieferung ab 75 €"
+    },
+    "offcanvas": {
+      "header": {
+        "menu": "Menu"
+      }
+    },
+    "footer": {
+      "title": {
+        "payment": "Bezahlung",
+        "shipping": "Versand & Lieferzeiten"
+      },
+      "shipping": {
+        "content": "<strong>Versand via DHL/GLS ​<br />Portofrei ab Bestellwert 179  € <br />Darunter 5,99 €, <br />ab 99 € nur 3,99 €</strong>"
+      }
+    }
+  }
+}

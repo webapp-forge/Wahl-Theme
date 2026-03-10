@@ -1,0 +1,22 @@
+{% sw_extends '@Storefront/storefront/base.html.twig' %}
+
+{% block base_head %}
+    {{ parent() }}
+    {# INCLUDE_LATER
+    <link rel="preconnect" href="https://www.paypal.com" crossorigin>
+    <link rel="preconnect" href="https://static.etracker.com">
+    <link rel="preconnect" href="https://api.signalize.com">
+    <link rel="preconnect" href="https://www.smartsuppchat.com">
+    #}
+{% endblock %}
+
+{% block base_body %}
+    <div class="wahl-page">
+        {{ parent() }}
+    </div>
+{% endblock %}
+
+{% block base_body_inner %}
+    {{ parent() }}
+    {% sw_include 'storefront/svg.html.twig' %}
+{% endblock %}

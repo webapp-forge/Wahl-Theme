@@ -1,0 +1,37 @@
+{% sw_extends '@Storefront/storefront/layout/header/top-bar.html.twig' %}
+
+{% block layout_header_top_bar %}
+    <div class="top-bar d-lg-block"> {# d-none #}
+    {% block layout_header_top_bar_inner %}
+        <div class="wahl-container wahl-topbar__inner d-flex align-items-center">
+            {% block wahl_topbar_left %}
+                <div class="wahl-topbar__left "><!--d-none d-md-block-->
+                    {% block wahl_topbar_phone %}
+                        <span class="wahl-topbar__phone d-none d-lg-block">
+                            {{ "wahl.topbar.phone"|trans|sw_sanitize }} | {{ "wahl.topbar.hours"|trans|sw_sanitize }}
+                        </span>
+                        <span class="wahl-topbar__phone-mobile d-lg-none">
+                            <a class="btn topbar-phone-btn" href="tel:08374580930">
+                                <svg role="img"><use href="#phone"></use></svg>
+                            </a>
+                        </span>
+                    {% endblock %}
+                    {% block wahl_topbar_hours %}{% endblock %}
+                </div>
+            {% endblock %}
+
+            {% block wahl_topbar_right %}
+                <div class="wahl-topbar__right ms-auto d-flex align-items-center justify-content-end">
+                    {% block wahl_topbar_promo %}
+                        {{ "wahl.topbar.promo"|trans|sw_sanitize }}
+                    {% endblock %}
+
+                    {% block wahl_topbar_core %}{% endblock %}
+                    
+                </div>
+            {% endblock %}
+            {{ parent() }}
+        </div>
+    {% endblock %}
+    </div>
+{% endblock %}

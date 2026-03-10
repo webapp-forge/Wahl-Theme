@@ -1,0 +1,10 @@
+/* scaffold: component/_cms-sections.scss
+   Plugin Theme: WahlBaseTheme
+   Add your rules here. This file is NOT imported unless it contains real content.
+*/
+
+.cms-section {
+   .boxed {
+      @extend .wahl-container;
+    }
+}

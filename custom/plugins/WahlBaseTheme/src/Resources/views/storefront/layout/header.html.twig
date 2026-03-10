@@ -1,0 +1,14 @@
+{% sw_extends '@Storefront/storefront/layout/header.html.twig' %}
+
+{% block base_header %}
+    {% sw_include '@Storefront/storefront/utilities/staging-info.html.twig' %}
+
+    {% block base_header_inner %}
+        {% sw_include '@Storefront/storefront/layout/header/header.html.twig' %}
+    {% endblock %}
+    
+{% endblock %}
+
+{% block base_navigation_inner %}
+    {% sw_include '@Storefront/storefront/layout/navbar/navbar.html.twig' with { header: header } %}
+{% endblock %}

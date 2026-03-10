@@ -1,0 +1,81 @@
+{% sw_extends '@Storefront/storefront/layout/header/header.html.twig' %}
+
+{#% block layout_header %}
+    {{ parent() }}
+{% endblock %#}
+
+{% block layout_header_navigation %}
+    <header class="header-main">
+    <div class="wahl-container">
+        {#{ parent() }#}
+        <div class="row pt-2 pt-lg-3 align-items-center header-row">
+            <div class="col-6 col-md-6 m-0 col-lg-auto header-logo-col">
+                {% block layout_header_logo %}
+                <div class="row g-0 align-items-center justify-content-start">
+                    <div class="col-12 col-lg-auto header-logo-col pb-sm-2 my-3 m-lg-0">
+                        {{ parent() }}
+                    </div>
+                </div>
+                {% endblock %}
+            </div>
+            <div class="col-12 mt-lg-0 mt-2 order-2 col-lg order-md-2 order-lg-1 header-search-col">
+                {% block layout_header_search %}
+                    <div class="row">
+                        <div class="col-sm-auto d-sm-block d-lg-none"> {# d-none #}
+                            {% block layout_header_navigation_toggle_tablet %}
+                                {{ parent() }}
+                            {% endblock %}
+                        </div>
+                        <div class="col">
+                            {% sw_include '@Storefront/storefront/layout/header/search.html.twig' %}
+                        </div>
+                    </div>
+                {% endblock %}
+            </div>
+            <div class="col-6 col-md-6 col-lg-auto order-1 order-md-1 order-lg-2 header-actions-col">
+                {% block layout_header_actions %}
+                    <div class="row g-0 align-items-center justify-content-end">
+                        <div class="col-12 order-1 col-sm-auto order-sm-2 header-actions-col">
+                            <div class="row g-0">
+                                {% block layout_header_navigation_toggle %}
+                                    {# menu toggle removed here #}
+                                    {# TODO: add phone button for resolutions without top bar #}
+                                    {#
+                                    <div class="col d-sm-none">
+                                        
+                                    </div>
+                                    #}
+                                {% endblock %}
+
+                                {% block layout_header_search_toggle %}
+                                    {# search toggle removed #}
+                                {% endblock %}
+
+                                {% if config('core.cart.wishlistEnabled') %}
+                                    {% block layout_header_actions_wishlist %}
+                                        {{ parent() }}
+                                    {% endblock %}
+                                {% endif %}
+
+                                {% block layout_header_actions_account %}
+                                    <div class="col-auto">
+                                        <div class="account-menu">
+                                            {% sw_include '@Storefront/storefront/layout/header/actions/account-widget.html.twig' %}
+                                        </div>
+                                    </div>
+                                {% endblock %}
+
+                                {% block layout_header_actions_cart %}
+                                    {{ parent() }}
+                                {% endblock %}
+                            </div>
+                        </div>
+                    </div>
+                {% endblock %}
+            </div>
+        </div>
+
+        
+    </div>
+    </header>
+{% endblock %}

@@ -1,0 +1,18 @@
+{
+  "name": "swag/theme-skeleton",
+  "description": "Theme skeleton plugin",
+  "type": "shopware-platform-plugin",
+  "license": "MIT",
+  "autoload": {
+    "psr-4": {
+      "WahlBaseTheme\\": "src/"
+    }
+  },
+  "extra": {
+    "shopware-plugin-class": "WahlBaseTheme\\WahlBaseTheme",
+    "label": {
+      "de-DE": "Theme WahlBaseTheme plugin",
+      "en-GB": "Theme WahlBaseTheme plugin"
+    }
+  }
+}

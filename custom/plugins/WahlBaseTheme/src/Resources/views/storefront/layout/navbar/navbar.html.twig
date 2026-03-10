@@ -1,0 +1,13 @@
+{% sw_extends '@Storefront/storefront/layout/navbar/navbar.html.twig' %}
+
+{% block layout_navbar %}
+    <div class="wahl-container">
+    {% set navbarOptions = {
+            pathIdList: shopware.navigation.pathIdList
+        } %}
+
+    {% block layout_navbar_nav_element %}
+        {{ parent() }}
+    {% endblock %}   
+    </div>
+{% endblock %}

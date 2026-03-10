@@ -1,0 +1,25 @@
+/* scaffold: skin/shopware/page/account/_aside.scss
+   Plugin Theme: WahlReitsportTheme
+   Add your rules here. This file is NOT imported unless it contains real content.
+*/
+
+.account-menu-dropdown {
+  text-align: center;
+  font-size: 13px;
+  color: vat(--wahl-color-bg-contrast);
+  text-transform: uppercase;
+}
+
+.account-menu-login-button {
+   text-transform: none;
+   font-size: 13px;
+   padding: 8px 0;
+}
+
+.header-account-menu .account-aside-list-group>a {
+  color: var(--wahl-color-bg-contrast);
+}
+
+.header-account-menu .account-aside-list-group>a:hover {
+  color: var(--wahl-color-accent);
+}

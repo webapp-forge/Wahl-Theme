@@ -1,0 +1,42 @@
+###> IDE ###
+/.idea
+/.vscode
+###< IDE ###
+
+###> OS ###
+.DS_Store
+Thumbs.db
+###< OS ###
+
+###> vendor / generated ###
+/vendor/
+node_modules/
+###< vendor / generated ###
+
+###> shopware/core ###
+.env.local
+.env.local.php
+.env.*.local
+/public/bundles/*
+/public/media/*
+/public/theme/*
+/public/thumbnail/*
+/public/sitemap/*
+/files/*
+!/files/.htaccess
+/var/*
+!/var/.htaccess
+/auth.json
+/install.lock
+/.uniqueid.txt
+/public/asset-manifest.json
+###< shopware/core ###
+
+###> third-party plugins (not our code) ###
+/custom/plugins/SwagExtensionStore/
+/custom/plugins/SwagPlatformDemoData/
+###< third-party plugins ###
+
+###> BelVG originals (reference only, nicht in VCS) ###
+/_reference/
+###< BelVG originals ###

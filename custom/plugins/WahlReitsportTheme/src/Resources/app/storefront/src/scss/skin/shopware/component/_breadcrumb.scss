@@ -1,0 +1,10 @@
+/* scaffold: skin/shopware/component/_breadcrumb.scss
+   Plugin Theme: WahlReitsportTheme
+   Add your rules here. This file is NOT imported unless it contains real content.
+*/
+
+.breadcrumb-item:not(:last-child)::after{
+  height: 1.375rem;
+ transform: translateY(-50%);
+}
+

@@ -1,0 +1,18 @@
+{
+  "name": "swag/theme-skeleton",
+  "description": "Theme skeleton plugin",
+  "type": "shopware-platform-plugin",
+  "license": "MIT",
+  "autoload": {
+    "psr-4": {
+      "WahlAgrarTheme\\": "src/"
+    }
+  },
+  "extra": {
+    "shopware-plugin-class": "WahlAgrarTheme\\WahlAgrarTheme",
+    "label": {
+      "de-DE": "Theme WahlAgrarTheme plugin",
+      "en-GB": "Theme WahlAgrarTheme plugin"
+    }
+  }
+}

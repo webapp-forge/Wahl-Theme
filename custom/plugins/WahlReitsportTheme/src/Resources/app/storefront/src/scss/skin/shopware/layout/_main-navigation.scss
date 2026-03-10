@@ -1,0 +1,39 @@
+/* scaffold: skin/shopware/layout/_main-navigation.scss
+   Plugin Theme: WahlReitsportTheme
+   Add your rules here. This file is NOT imported unless it contains real content.
+*/
+
+
+.nav-main .nav-link {
+    color: var(--wahl-color-bg-contrast);
+    padding: 12px 16px;
+}
+.navbar-nav .nav-link.show {
+   color: var(--wahl-color-bg-contrast);
+}
+.nav-main .nav-link.active, .nav-main .nav-link:hover {
+   color: var(--wahl-color-bg-contrast);
+}
+
+@include media-breakpoint-up(lg) {
+   .nav-main {
+      border-top: 1px solid rgba(82, 82, 81, 0.2);
+      top: 72px;
+   }
+}
+
+@include media-breakpoint-up(md) {
+   .nav-main .nav-link.active, .nav-main .nav-link:hover {
+      background-color: white;
+   }
+   .nav-main .nav-link.active, .nav-main .nav-link:hover {
+      border-top: 2px solid var(--wahl-color-primary);
+   }
+   .main-navigation-link {
+        text-transform: uppercase;
+        border-top: 2px solid transparent;
+    }
+   .main-navigation-link-text {
+      font-weight: normal;  
+   }
+}

@@ -1,0 +1,22 @@
+{
+  "name": "WahlBaseTheme",
+  "author": "Wahl",
+  "views": [
+     "@Storefront",
+     "@Plugins",
+     "@WahlBaseTheme"
+  ],
+  "style": [
+    "app/storefront/src/scss/overrides.scss",
+    "@Storefront",
+    "app/storefront/src/scss/base.scss"
+  ],
+  "script": [
+    "@Storefront",
+    "app/storefront/dist/storefront/js/wahl-base-theme/wahl-base-theme.js"
+  ],
+  "asset": [
+    "@Storefront",
+    "app/storefront/src/assets"
+  ]
+}

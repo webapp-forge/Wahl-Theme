@@ -1,0 +1,23 @@
+/* scaffold: layout/_navigation-offcanvas.scss
+   Plugin Theme: WahlBaseTheme
+   Add your rules here. This file is NOT imported unless it contains real content.
+*/
+
+.navigation-offcanvas .offcanvas-header {
+   border-bottom: 1px solid var(--wahl-color-separator-line);
+}
+
+.navigation-offcanvas-container {
+   font-size: 14px;
+}
+
+.navigation-offcanvas-container #off-canvas-headline {
+   display: none;
+}
+
+.navigation-offcanvas-list-item {
+   border-top: none;
+}
+.navigation-offcanvas-list-item:last-child {
+   border-bottom: none;
+}

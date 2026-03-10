@@ -1,0 +1,162 @@
+/* scaffold: skin/shopware/layout/_header.scss
+   Plugin Theme: WahlBaseTheme
+   Add your rules here. This file is NOT imported unless it contains real content.
+*/
+
+.header-main  {
+  flex: 0 0 auto;   /* prevents shrinking when scrolling */
+  position: sticky;
+  top: 0;
+  z-index: 9999;
+}
+
+.header-main .header-row {
+  /*padding-top: 12px;*/
+  padding: 16px 0 0 0;
+}
+
+.header-search-icon svg {
+  height: 28px;
+  width: 28px;
+  margin-bottom: 2px;
+}
+
+.header-actions-col .header-actions-btn svg {
+    width: 30px;
+    height: 30px;
+}
+.header-actions-btn svg use {
+    fill: transparent;
+}
+.header-actions-btn .user-badge {
+    position: absolute;
+    top: 0;
+    right: 2px;
+    width: 16px;
+    height: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--wahl-color-accent);
+    border-radius: 50%;
+}
+.header-cart-total {
+    color: #fff;
+    font-weight: normal;
+    font-size: 1rem;
+}
+
+.header-logo-picture {
+  min-width: 0;
+}
+
+
+@include media-breakpoint-down(sm) {
+  #searchCollapse {
+    display: block !important;
+    height: auto !important;
+  }
+
+  .header-search-col > .row > :first-child {
+    flex: 0 0 auto;
+    width: auto;
+  }
+
+  .header-actions-btn:hover, .header-actions-btn:hover .icon
+  {
+    color: var(--wahl-color-accent);
+  }
+
+  .header-actions-col .header-actions-btn svg { 
+    width: 22px; 
+    height: 22px; 
+  }
+}
+
+
+
+@include media-breakpoint-down(lg) {
+  .header-logo-col.my-3 {
+    margin-top: .25rem !important;
+    margin-bottom: .25rem !important;
+  }
+
+  .header-logo-col.pb-sm-2 {
+    padding-bottom: 0 !important;
+  }
+
+  .header-logo-main-img {
+    max-height: 56px;
+    width: auto;
+  }
+  
+  .header-search-col {
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+  }
+
+  .header-search-col > .row {
+    flex-wrap: nowrap;
+    align-items: center;
+  }
+
+  .header-search-col > .row > .col {
+    min-width: 0;
+  }
+}
+
+
+
+// Tablet & up (sm)
+@include media-breakpoint-up(sm) {
+  .header-search {
+    max-width: 400px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .header-search-form,
+  .header-search-form .input-group {
+    width: 100%;
+  }
+}
+
+
+// Desktop & up (lg)
+@include media-breakpoint-up(lg) {
+  .header-row > .header-search-col {
+    min-width: 0;
+  }
+
+  .header-search {
+    max-width: none; 
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-left: 0;
+    margin-right: 0;
+  }
+
+  .header-search-form {
+    width: 700px;
+    max-width: 700px;
+  }
+
+  .header-search-form .input-group {
+    width: 100%;
+  }
+
+  .header-search, .header-search-form, .header-search-form .input-group {
+    width: 100%;
+  }
+
+  .header-search-input {
+    min-width: 0;
+  }
+
+  /* fix: cart svg is misplaced for unknown reason */
+  .header-cart-btn {
+    margin-top: -5px;
+  }
+
+}

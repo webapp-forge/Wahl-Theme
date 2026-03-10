@@ -1,0 +1,47 @@
+/* scaffold: skin/shopware/component/_breadcrumb.scss
+   Plugin Theme: WahlBaseTheme
+   Add your rules here. This file is NOT imported unless it contains real content.
+*/
+
+
+.breadcrumb{
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.breadcrumb-item{
+  position: relative;
+  --sep-space: 30px;
+  margin-right: var(--sep-space);
+}
+
+.breadcrumb-item:last-child{
+  margin-right: 0;
+}
+
+.breadcrumb-item:not(:last-child)::after{
+  content: "";
+  position: absolute;
+  top: 50%;
+  right: calc(var(--sep-space) / -2);  
+  width: 1px;
+  height: 14px;
+  background-color: var(--wahl-color-font-inactive);
+
+  transform: translateY(-50%) rotate(45deg);
+}
+
+.breadcrumb-placeholder{
+  display: none;
+}
+
+.breadcrumb a {
+    color: var(--wahl-color-font-inactive);
+    font-size: 14px;
+}
+
+.breadcrumb a.is-active, .breadcrumb a:hover { 
+   font-weight: normal;
+   color: var(--wahl-color-text-accent);
+}

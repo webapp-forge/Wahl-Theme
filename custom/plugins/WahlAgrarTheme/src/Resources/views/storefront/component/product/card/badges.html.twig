@@ -1,0 +1,100 @@
+{% sw_extends '@WahlBaseTheme/storefront/component/product/card/badges.html.twig' %}
+
+{% block component_product_badges_discount %}
+    {# Preisquelle ermitteln (analog price-unit): mainVariant → günstigstes Kind → parentCheapest #}
+    {% set parentHasTiers = product.calculatedPrices is defined and product.calculatedPrices.count > 0 %}
+    {% set parentReal = parentHasTiers ? product.calculatedPrices.last : product.calculatedPrice %}
+    {% set displayParent = product.variantListingConfig.displayParent and product.parentId is null %}
+
+    {% set chosenEntity = product %}
+    {% set chosenPrice  = parentReal %}
+    {% set chosenSource = 'parentReal' %}
+
+    {% set mv = (product.mainVariant is defined and product.mainVariant) ? product.mainVariant : null %}
+    {% if not mv and product.mainVariantId is defined and product.mainVariantId and product.children is defined and product.children|length > 0 %}
+        {% for c in product.children %}
+            {% if c.id == product.mainVariantId %}{% set mv = c %}{% endif %}
+        {% endfor %}
+    {% endif %}
+    {% if mv %}
+        {% set mvHasTiers = mv.calculatedPrices is defined and mv.calculatedPrices.count > 0 %}
+        {% set mvPrice = mvHasTiers ? mv.calculatedPrices.last : mv.calculatedPrice %}
+        {% if mvPrice and mvPrice.unitPrice is not null %}
+            {% set chosenEntity = mv %}{% set chosenPrice = mvPrice %}{% set chosenSource = 'mainVariant' %}
+        {% endif %}
+    {% endif %}
+    {% if chosenSource == 'parentReal' and product.children is defined and product.children|length > 0 %}
+        {% set minUnit = null %}{% set minChild = null %}{% set minChildPrice = null %}
+        {% for c in product.children %}
+            {% set chPrice = (c.calculatedPrices is defined and c.calculatedPrices.count > 0) ? c.calculatedPrices.last : c.calculatedPrice %}
+            {% if chPrice and chPrice.unitPrice is not null and (minUnit is null or chPrice.unitPrice < minUnit) %}
+                {% set minUnit = chPrice.unitPrice %}{% set minChild = c %}{% set minChildPrice = chPrice %}
+            {% endif %}
+        {% endfor %}
+        {% if minChild %}{% set chosenEntity = minChild %}{% set chosenPrice = minChildPrice %}{% set chosenSource = 'cheapestChild' %}{% endif %}
+    {% endif %}
+    {% set cheapestParent = product.calculatedCheapestPrice ?? null %}
+    {% if (chosenPrice is null or chosenPrice.unitPrice is same as(null)) and cheapestParent and cheapestParent.unitPrice is not null %}
+        {% set chosenPrice = cheapestParent %}{% set chosenSource = 'parentCheapest' %}
+    {% endif %}
+    {% if displayParent and parentReal and cheapestParent and parentReal.unitPrice != cheapestParent.unitPrice %}
+        {% set chosenPrice = cheapestParent ?? parentReal %}
+    {% endif %}
+    {% if chosenPrice is null or chosenPrice.unitPrice is same as(null) %}
+        {% set chosenPrice = parentReal %}
+    {% endif %}
+
+    {# Besten Referenzpreis ermitteln: Custom-UVP > Custom-Listpreis > SW-Listpreis #}
+    {% set newPrice = (chosenPrice and chosenPrice.unitPrice is not null) ? chosenPrice.unitPrice : null %}
+    {% set coreListPrice = (chosenPrice and chosenPrice.listPrice and chosenPrice.listPrice.price is not null) ? chosenPrice.listPrice.price : null %}
+    {% set cf = (chosenEntity.translated is defined and chosenEntity.translated.customFields) ? chosenEntity.translated.customFields : (chosenEntity.customFields ?? {}) %}
+    {% set cfList = cf.custom_product_list_price ?? null %}
+    {% set cfUvp  = cf.custom_product_rrp ?? null %}
+
+    {% set oldPrice = null %}
+    {% set oldKind  = null %}
+    {% if newPrice is not null %}
+        {% set np = (newPrice|replace({',': '.'}) + 0) %}
+        {% if coreListPrice is not null %}
+            {% set cp = (coreListPrice|replace({',': '.'}) + 0) %}
+            {% if cp > np and (oldPrice is null or cp > (oldPrice|replace({',': '.'}) + 0)) %}
+                {% set oldPrice = coreListPrice %}{% set oldKind = 'strike' %}
+            {% endif %}
+        {% endif %}
+        {% if cfList is not null %}
+            {% set lp = (cfList|replace({',': '.'}) + 0) %}
+            {% if lp > np and (oldPrice is null or lp > (oldPrice|replace({',': '.'}) + 0)) %}
+                {% set oldPrice = cfList %}{% set oldKind = 'strike' %}
+            {% endif %}
+        {% endif %}
+        {% if cfUvp is not null %}
+            {% set up = (cfUvp|replace({',': '.'}) + 0) %}
+            {% if up > np and (oldPrice is null or up > (oldPrice|replace({',': '.'}) + 0)) %}
+                {% set oldPrice = cfUvp %}{% set oldKind = 'uvp' %}
+            {% endif %}
+        {% endif %}
+    {% endif %}
+
+    {# Badge rendern wenn Ersparnis ≥ 3% #}
+    {% if newPrice is not null and oldPrice is not null %}
+        {% set np = (newPrice|replace({',': '.'}) + 0) %}
+        {% set op = (oldPrice|replace({',': '.'}) + 0) %}
+        {% if op > np %}
+            {% set pct = (((op - np) / op) * 100)|round %}
+            {% if pct >= 3 %}
+                <div class="badge badge-discount">
+                    -{{ pct }}%{% if oldKind == 'uvp' %}<sup>UVP</sup>{% endif %}
+                </div>
+            {% endif %}
+        {% endif %}
+    {% else %}
+        {# Fallback: SW-eigener Listpreis ohne Ranges #}
+        {% set hasRange = product.calculatedPrices.count > 1 %}
+        {% if chosenPrice and chosenPrice.listPrice and chosenPrice.listPrice.percentage is not null and not hasRange %}
+            {% set pct = chosenPrice.listPrice.percentage|round %}
+            {% if pct >= 3 %}
+                <div class="badge badge-discount">-{{ pct }}%</div>
+            {% endif %}
+        {% endif %}
+    {% endif %}
+{% endblock %}
