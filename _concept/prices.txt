@@ -1,0 +1,36 @@
+PREISLOGIK – LISTING & DETAILSEITE
+====================================
+
+Felder
+------
+  Streichpreis : SW Standard List Price (calculatedPrice.listPrice)
+  UVP          : Custom Field custom_product_rrp
+
+Priorität: Streichpreis > UVP
+  Wenn beide vorhanden: Streichpreis gewinnt, UVP wird ignoriert.
+
+Listing
+-------
+  Situation                  | Badge       | Preis | Alter Preis
+  ---------------------------|-------------|-------|-------------------------------
+  Streichpreis               | -X% (rot)   | rot   | durchgestrichen
+  UVP (kein Streichpreis)    | keiner      | rot   | (UVP XX,XX €) klein
+  Streichpreis + UVP         | -X% (rot)   | rot   | durchgestrichen (UVP ignoriert)
+  Kein Streichpreis, kein UVP| keiner      | normal| –
+
+Detailseite
+-----------
+  Situation                  | Badge       | Preis | Alter Preis
+  ---------------------------|-------------|-------|-------------------------------
+  Streichpreis               | -X% (rot)   | rot   | durchgestrichen schwarz
+  UVP (kein Streichpreis)    | keiner      | rot   | (UVP XX,XX €) klein
+  Streichpreis + UVP         | -X% (rot)   | rot   | durchgestrichen schwarz (UVP ignoriert)
+  Kein Streichpreis, kein UVP| keiner      | normal| –
+
+Hinweise
+--------
+  - Mindest-Rabatt für Badge-Anzeige: 3%
+  - UVP-Badge gibt es nicht (auch nicht "UVP" als Badge-Text)
+  - UVP wird in Klammern als Fließtext neben dem Preis angezeigt, nicht durchgestrichen
+  - custom_product_list_price wird nicht mehr verwendet (ersetzt durch SW Standard List Price)
+  - Im Zusammenhang mit dem UVP dürfen keine -% Angaben gemacht werden. Die Badges und -% auf den Detailseiten werdennur bei einem Streichpreis verwendet.

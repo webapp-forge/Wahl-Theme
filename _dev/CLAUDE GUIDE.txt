@@ -1,0 +1,56 @@
+SHOPWARE 6 THEME REIMPLEMENTIERUNG
+
+Ausgangslage:
+- Von einer externen Firma wurden 2 Themes für einen Kunden entwickelt: 
+    BELVG_Agrar und BELVG Reitsport
+- Die Firma hat fast nur auf passende Optik geachtet. Block-Verberbung
+    wurde z.B. fast gar nicht umgesetzt, und so kracht es jetzt regelmäßig
+    bei Shopware Updates oder Plugin-Installtionen. Immer wieder müssen wieder
+    Plugin-Code direkt in das Theme einfügen.
+- Das Reitsport Theme ist lediglich eine Kopie des Agrar-Themes überschrieben 
+    mit den optischen Abweichungen.
+-> Theme wird durch mich neu entwickelt, Block-Vererbung ohne Ausnahmen,
+    Optik soll erhalten bleiben.
+
+Neue Struktur:
+parent: WahlBaseTheme (twig und css das sich die Children teilen)
+|- child: WahlAgrarTheme
+|- child: WahlReitsportTheme
+
+Original-Themes:
+- liegen im Verzeichnis _reference
+
+Entwicklung:
+- Reimplementierung Frontend auf optischer Basis. CSS kann aus dem alten Theme
+    übernommen werden soweit kompatibel. Wir gehen Komponente für Komponente 
+    durch.
+- Twig Templates: hier wird nur angelegt was von Standard abweicht, minimal 
+    blockweise
+- CSS: hier wurden Skeletons für alle angelegt. Das diente vor allem der 
+    Vereinfachung der Arbeitsweise, bevor Claude zum Einsatz kam. Wir können
+    leere am Ende wieder rauslöschen.
+- Snippets: Hier müssen wir aufpassen bei der Generierung, dass Snippets in 
+    den Child Themes nicht durch leere Strings überschrieben werden. Bitte die 
+    Shell Scripts unter /bin konsultieren um die Logik dahinter zu verstehen.
+
+Arbeitsweise:
+- Bitte keinen Code direkt schreiben, stattdessen Datei verlinken, ich füge 
+    ihn ein. Es ist wichtig dass ich den Überblick behalte und nicht nur klicke.
+
+_dev\TODO_Template-Abgleich-BelVG.md:
+- Wir untersuchen in jedem Original-Template was die Abweichungen zu Shopware
+    Standard sind und was wir übernehmen müssen.
+- Insbesondere müssen custom fields beachtet werden.
+- Zusätzlich wurden Plugin-Snippets in Templates eingefügt damit das Plugin
+    lauffähig ist. Das muss dokumentiert werden. Ziel ist dass es im neuen 
+    Theme ohne funktioniert, muss für jeden Einzelfall getestet werden.
+    Ggf. ergänzen in _testing/plugins.txt
+
+Dokumentaion Testfälle
+- _dev/_testing/plugins.txt
+- _dev/_testing/custom_fields.txt
+
+Lokale Entwicklungsumgebung:
+- Docker, WSL, ?
+
+

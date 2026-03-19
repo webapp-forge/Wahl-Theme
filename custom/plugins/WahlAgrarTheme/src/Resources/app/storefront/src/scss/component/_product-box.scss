@@ -194,12 +194,18 @@
     }
   }
 
-  /* Streichpreis-Styling */
-  .product-price.with-list-price {
+  /* Streichpreis / UVP-Styling */
+  .product-price.is-sale {
     color: var(--wahl-color-sale);
   }
   .list-price-price {
     font-size: 1rem;
+    text-decoration: line-through;
+    color: var(--wahl-color-text);
+  }
+  .list-price-uvp {
+    font-size: 0.85rem;
+    color: var(--wahl-color-text);
   }
   .list-price-percentage {
     display: none;

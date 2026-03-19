@@ -1,0 +1,4 @@
+locale URLs:
+http://localhost:8080/index.php
+http://agrar.localhost:8000/
+http://reitsport.localhost:8000/

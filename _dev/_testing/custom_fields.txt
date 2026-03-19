@@ -1,0 +1,8 @@
+- UVP & Listenpreise: 
+    - nur Listenpreis
+    - nur UVP
+    - Listenpreis & UVP
+    - Badges Listing für alle drei Fälle
+    - Preisanzeige Listing für alle drei Fälle
+    - Badges Detailseite für alle drei Fälle
+    - Preisanzeige Detailseite für alle drei Fälle

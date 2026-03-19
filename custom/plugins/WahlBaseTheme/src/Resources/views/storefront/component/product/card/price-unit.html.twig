@@ -1,0 +1,58 @@
+{% sw_extends '@Storefront/storefront/component/product/card/price-unit.html.twig' %}
+
+{% block component_product_box_price_info %}
+    {% set currentPrice = product.calculatedCheapestPrice ?? product.calculatedPrice %}
+    {% set newPrice = currentPrice ? currentPrice.unitPrice : null %}
+    {% set listPrice = (currentPrice and currentPrice.listPrice and currentPrice.listPrice.price is not null)
+        ? currentPrice.listPrice.price : null %}
+    {% set referencePrice = currentPrice ? currentPrice.referencePrice : null %}
+    {% set cfUvp = product.translated.customFields.custom_product_rrp ?? null %}
+    {% if cfUvp is not null %}{% set cfUvp = cfUvp|replace({',': '.'}) + 0 %}{% endif %}
+
+    {# Priorität: Streichpreis > UVP #}
+    {% set showListPrice = newPrice is not null and listPrice is not null and listPrice > newPrice %}
+    {% set showUvp = not showListPrice and cfUvp is not null and cfUvp > newPrice %}
+    {% set isOnSale = showListPrice or showUvp %}
+
+    {% set showFrom = product.calculatedPrices.count > 1
+        or (product.calculatedCheapestPrice and product.calculatedPrice
+            and product.calculatedCheapestPrice.unitPrice != product.calculatedPrice.unitPrice) %}
+
+    <div class="product-price-info">
+        {% block component_product_box_price_unit %}
+            {% if referencePrice and referencePrice.unitName %}
+                <p class="product-price-unit">
+                    {% block component_product_box_price_purchase_unit %}
+                        <span class="product-unit-label">{{ "listing.boxUnitLabel"|trans|sw_sanitize }}</span>
+                        <span class="price-unit-content">{{ referencePrice.purchaseUnit }} {{ referencePrice.unitName }}</span>
+                    {% endblock %}
+                    {% block component_product_box_price_reference_unit %}
+                        <span class="price-unit-reference">
+                            ({{ referencePrice.price|currency }}<sup>{{ "general.star"|trans|sw_sanitize }}</sup> / {{ referencePrice.referenceUnit }} {{ referencePrice.unitName }})
+                        </span>
+                    {% endblock %}
+                </p>
+            {% endif %}
+        {% endblock %}
+
+        {% block component_product_box_price %}
+            <div class="product-price-wrapper">
+                {% if showFrom %}
+                    <span class="product-price-from">{{ "listing.listingTextFrom"|trans|sw_sanitize }}</span>
+                {% endif %}
+                <span class="product-price{% if isOnSale %} is-sale{% endif %}">
+                    {{ newPrice|currency }}<sup>{{ "general.star"|trans|sw_sanitize }}</sup>
+                </span>
+                {% if showListPrice %}
+                    <span class="list-price-price">
+                        {{ listPrice|currency }}<sup>{{ "general.star"|trans|sw_sanitize }}</sup>
+                    </span>
+                {% elseif showUvp %}
+                    <span class="list-price-uvp">
+                        ({{ cfUvp|currency }}<sup>{{ "general.star"|trans|sw_sanitize }}</sup> UVP)
+                    </span>
+                {% endif %}
+            </div>
+        {% endblock %}
+    </div>
+{% endblock %}

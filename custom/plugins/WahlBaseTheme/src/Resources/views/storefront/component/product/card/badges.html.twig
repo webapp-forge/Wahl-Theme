@@ -1,1 +1,15 @@
 {% sw_extends '@Storefront/storefront/component/product/card/badges.html.twig' %}
+
+{% block component_product_badges_discount %}
+    {% set currentPrice = product.calculatedCheapestPrice ?? product.calculatedPrice %}
+    {% set newPrice = currentPrice ? currentPrice.unitPrice : null %}
+    {% set listPrice = (currentPrice and currentPrice.listPrice and currentPrice.listPrice.price is not null)
+        ? currentPrice.listPrice.price : null %}
+
+    {% if newPrice is not null and listPrice is not null and listPrice > newPrice %}
+        {% set pct = (((listPrice - newPrice) / listPrice) * 100)|round %}
+        {% if pct >= 3 %}
+            <div class="badge badge-discount">-{{ pct }}%</div>
+        {% endif %}
+    {% endif %}
+{% endblock %}
