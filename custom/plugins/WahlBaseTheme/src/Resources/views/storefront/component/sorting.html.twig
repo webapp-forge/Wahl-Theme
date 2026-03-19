@@ -1,0 +1,77 @@
+{% set config = { sorting: current } %}
+{% set showSorting = (slot.config.showSorting.value is defined) ? slot.config.showSorting.value : true %}
+
+{% if showSorting and sortings|length > 0 %}
+    {% set currentHasDirection = '-asc' in current or '-desc' in current %}
+
+    <div class="sorting__wrapper"
+         data-dropdown-sorting="true">
+
+        <span class="sorting__label">{{ "listing.sortByLabel"|trans }}</span>
+
+        <div class="sorting__dropdown dropdown">
+            <button class="btn dropdown-toggle sorting__toggle"
+                    type="button"
+                    id="sortingDropdown"
+                    data-bs-toggle="dropdown"
+                    aria-expanded="false">
+                {% for sorting in sortings %}
+                    {% if sorting.key == current %}
+                        <span class="dropdown-toggle__label">{{ sorting.translated.label|sw_sanitize }}</span>
+                    {% endif %}
+                {% endfor %}
+
+                <svg class="sorting__chevron" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                    <path d="M4 6L8 10L12 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </button>
+
+            <ul class="dropdown-menu sorting__dropdown-menu" aria-labelledby="sortingDropdown">
+                {% for sorting in sortings %}
+                    {% set key = sorting.key %}
+                    <li class="dropdown-item sorting__dropdown-item">
+                        <button class="dropdown-item__button{% if key == current %} selected{% endif %}"
+                                data-sort-key="{{ key }}">
+                            {{ sorting.translated.label|sw_sanitize }}
+                        </button>
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+
+        {# Richtungs-Button: nur bei Einträgen mit -asc/-desc sichtbar #}
+        {# Icon: aufsteigend = normal, absteigend = 180° gedreht via CSS #}
+        <button class="btn btn-change-direction sorting__direction-btn"
+                type="button"
+                aria-label="{{ 'listing.sortChangeDirectionButtonLabel'|trans|sw_sanitize }}"
+                {% if '-asc' in current %}
+                    data-asc-direction="1"
+                {% elseif '-desc' in current %}
+                    data-asc-direction="0"
+                {% else %}
+                    data-asc-direction="1"
+                    disabled
+                {% endif %}>
+            <svg width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <path d="M11.6211 11.1436H15.6211" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M11.6211 15.1436H18.6211" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M11.6211 19.1436H21.6211" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M9.62109 7.64355L6.62109 4.64355L3.62109 7.64355" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M6.62109 6.14355V20.1436" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+        </button>
+
+        {# Verstecktes <select> für Shopware's ListingSorting-Plugin #}
+        {# Klasse "sorting" ist Pflicht, damit Shopware's ListingSorting-Plugin sich darauf initialisiert #}
+        <div class="sorting visually-hidden"
+             data-listing-sorting="true"
+             data-listing-sorting-options="{{ config|json_encode }}">
+            <select class="sorting form-select" aria-label="{{ 'general.sortingLabel'|trans|striptags }}">
+                {% for sorting in sortings %}
+                    {% set key = sorting.key %}
+                    <option value="{{ key }}"{% if key == current %} selected{% endif %}>{{ sorting.translated.label|sw_sanitize }}</option>
+                {% endfor %}
+            </select>
+        </div>
+    </div>
+{% endif %}

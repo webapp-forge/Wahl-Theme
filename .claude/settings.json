@@ -1,0 +1,14 @@
+{
+  "permissions": {
+    "allow": [
+      "Read(///wsl.localhost/Ubuntu/home/kirsten/projects/wahl-theme/**)",
+      "Read(///wsl.localhost/Ubuntu/home/kirsten/projects/wahl-theme/vendor/shopware/storefront/Resources/app/storefront/dist/assets/**)",
+      "Read(///wsl.localhost/Ubuntu/home/kirsten/projects/**)",
+      "Read(///wsl.localhost/Ubuntu/home/kirsten/projects/wahl-theme/custom/plugins/**)",
+      "Read(///wsl.localhost/Ubuntu/home/kirsten/projects/wahl-theme/custom/plugins/WahlBaseTheme/src/Resources/app/storefront/dist/storefront/js/wahl-base-theme/**)",
+      "Read(///wsl.localhost/Ubuntu/home/kirsten/projects/wahl-theme/bin/**)",
+      "Read(///wsl.localhost/Ubuntu/home/kirsten/projects/wahl-theme/public/theme/e6cbe32cedeab6ea6b391573141f56b9/js/storefront/**)",
+      "Bash(docker compose:*)"
+    ]
+  }
+}

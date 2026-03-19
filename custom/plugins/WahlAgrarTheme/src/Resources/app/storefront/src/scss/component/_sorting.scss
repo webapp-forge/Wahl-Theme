@@ -1,4 +1,116 @@
-/* scaffold: component/_sorting.scss
-   Plugin Theme: WahlAgrarTheme
-   Add your rules here. This file is NOT imported unless it contains real content.
-*/
+// Sortierungs-Wrapper: Label + Dropdown + Richtungs-Button
+.sorting__wrapper {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+// "Sortiert nach" Label
+.sorting__label {
+  font-size: 16px;
+  color: var(--wahl-color-text);
+  white-space: nowrap;
+  margin-right: 20px;
+}
+
+// Dropdown-Toggle-Button: kein Rahmen, wie Filter-Pills
+.sorting__toggle {
+  border: 0 !important;
+  background: transparent;
+  font-size: 16px;
+  font-weight: 400;
+  color: var(--wahl-color-text);
+  padding: 4px 0;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition: background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+
+  --bs-btn-active-color: var(--wahl-color-accent);
+  --bs-btn-hover-color: var(--wahl-color-accent);
+
+  &:hover,
+  &:active,
+  &:focus,
+  &:focus-visible {
+    color: var(--wahl-color-accent) !important;
+  }
+
+  &.show {
+    color: var(--wahl-color-accent);
+  }
+
+  // Bootstrap's eigenes ::after Caret entfernen
+  &::after {
+    display: none;
+  }
+}
+
+// Dropdown-Menü: gleicher Stil wie Filter-Dropdowns
+.sorting__dropdown-menu {
+  min-width: 180px;
+  padding: 8px 0;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  box-shadow: none;
+
+  .dropdown-item {
+    padding: 0;
+
+    &:hover {
+      background-color: transparent;
+    }
+  }
+
+  .dropdown-item__button {
+    display: block;
+    width: 100%;
+    padding: 5px 15px;
+    background: transparent;
+    border: 0;
+    font-size: 16px;
+    text-align: left;
+    color: var(--wahl-color-text);
+
+    &:hover {
+      color: var(--wahl-color-accent);
+    }
+
+    &.selected {
+      color: var(--wahl-color-accent);
+      pointer-events: none;
+    }
+  }
+}
+
+// Chevron-Animation
+.sorting__chevron {
+  flex-shrink: 0;
+  transition: transform .2s ease;
+  color: currentColor;
+}
+
+// Richtungs-Button
+.sorting__direction-btn {
+  border: 0 !important;
+  background: transparent;
+  padding: 4px;
+  color: var(--wahl-color-text);
+  display: inline-flex;
+  align-items: center;
+  transition: color .15s ease-in-out;
+
+  &:hover {
+    color: var(--wahl-color-accent);
+  }
+
+  // Icon dreht sich bei absteigend (Pfeil zeigt nach unten, lange Striche oben)
+  &[data-asc-direction="0"] svg {
+    transform: rotate(180deg);
+  }
+
+  // Versteckt wenn deaktiviert (kein Richtungs-Eintrag gewählt)
+  &[disabled] {
+    display: none;
+  }
+}

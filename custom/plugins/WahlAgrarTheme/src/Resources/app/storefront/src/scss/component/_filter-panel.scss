@@ -1,4 +1,205 @@
-/* scaffold: component/_filter-panel.scss
-   Plugin Theme: WahlAgrarTheme
-   Add your rules here. This file is NOT imported unless it contains real content.
-*/
+// Offcanvas-Header nur im Offcanvas sichtbar, auf Desktop ausblenden
+.filter-panel-offcanvas-only,
+.filter-panel-offcanvas-header {
+  display: none;
+}
+
+// Filter-Panel Grundlayout (horizontal)
+.filter-panel {
+  display: flex;
+  flex-wrap: wrap;
+  align-content: flex-start;
+  margin-bottom: 8px;
+}
+
+// Kopfzeile: Filter-Button | Positionsanzahl | Sortierung
+.filter-panel__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex: 1 1 100%;
+  padding-bottom: 12px;
+  margin-bottom: 0;
+}
+
+.filter-panel__body {
+  flex: 1 1 100%;
+}
+
+.filter-panel-total__value {
+  margin-bottom: 0;
+  font-size: 18px;
+  color: var(--wahl-color-text);
+}
+
+.filter__count-products {
+  font-size: 18px;
+  color: var(--wahl-color-text);
+}
+
+// Desktop Filter-Button
+.filter__btn-desktop {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  .icon svg {
+    fill: currentColor;
+  }
+}
+
+// btn-additional: helles Grün (Akzentfarbe) mit weißer Schrift
+.btn.btn-additional {
+  --bs-btn-bg: var(--wahl-color-accent);
+  --bs-btn-border-color: var(--wahl-color-accent);
+  --bs-btn-color: #fff;
+  --bs-btn-hover-bg: #cde000;
+  --bs-btn-hover-border-color: #cde000;
+  --bs-btn-hover-color: #fff;
+  --bs-btn-active-bg: var(--wahl-color-accent);
+  --bs-btn-active-border-color: var(--wahl-color-accent);
+  --bs-btn-active-color: #fff;
+  padding: 5px 40px;
+
+  svg path {
+    stroke: #fff;
+  }
+}
+
+// Filter-Items-Container (horizontale Pill-Reihe)
+.filter-panel-items-container {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  padding-top: 8px;
+  margin-bottom: 8px;
+  width: 100%;
+}
+
+// Einzelnes Filter-Pill
+.filter-panel-item {
+  margin-right: 12px;
+  margin-bottom: 8px;
+}
+
+// Filter-Toggle-Button (Pill): kein Rahmen
+.filter-panel-item-toggle {
+  border: 0 !important;
+  font-size: 14px;
+  font-weight: 400;
+  color: var(--wahl-color-text);
+  background: transparent;
+  padding: 4px 0;
+  // color aus Bootstrap-Transition rausnehmen → kein Schwarz-Flash beim Klick
+  transition: background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+
+  // Bootstrap active-State override (verhindert kurzes Schwarz beim Klick)
+  --bs-btn-active-color: var(--wahl-color-accent);
+  --bs-btn-hover-color: var(--wahl-color-accent);
+
+  &:hover,
+  &:active,
+  &:focus,
+  &:focus-visible {
+    color: var(--wahl-color-accent) !important;
+  }
+
+  &.show,
+  &[aria-expanded='true'] {
+    color: var(--wahl-color-accent);
+
+    .icon-filter-panel-item-toggle svg {
+      transform: rotate(180deg);
+    }
+
+    .icon svg,
+    .icon svg path,
+    .icon svg use {
+      fill: var(--wahl-color-accent) !important;
+      color: var(--wahl-color-accent);
+    }
+  }
+}
+
+// Dropdown-Menü unter Pill
+.filter-panel-item-dropdown {
+  min-width: 220px;
+  max-height: 280px;
+  overflow: auto;
+  padding: 8px 0;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+
+  // Hellgrüne Scrollbar
+  scrollbar-width: thin;
+  scrollbar-color: var(--wahl-color-accent) transparent;
+
+  &::-webkit-scrollbar {
+    width: 4px;
+  }
+  &::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  &::-webkit-scrollbar-thumb {
+    background-color: var(--wahl-color-accent);
+    border-radius: 2px;
+  }
+}
+
+// Aktiver Filter-Tag
+.filter-active {
+  border-radius: 50px;
+  border: 1px solid var(--wahl-color-primary);
+  color: var(--wahl-color-text);
+  font-size: 13px;
+}
+
+.filter-active-remove {
+  &:hover { color: var(--wahl-color-primary); }
+}
+
+.btn.filter-reset-all {
+  border-radius: 50px;
+  font-weight: 400;
+}
+
+// Mobile: Offcanvas-Toggle-Button
+.btn.filter-panel-wrapper-toggle {
+  display: none;
+
+  @include media-breakpoint-down(lg) {
+    display: block;
+    width: 100%;
+  }
+}
+
+@include media-breakpoint-down(lg) {
+  .filter-panel-wrapper {
+    display: none;
+  }
+}
+
+// Trennlinie zwischen Filter und Produktliste
+.cms-element-sidebar-filter {
+  padding-bottom: 12px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  margin-bottom: 16px;
+}
+
+// Im Offcanvas: Header anzeigen
+.offcanvas-filter {
+  .filter-panel-offcanvas-header {
+    display: flex;
+    align-items: center;
+    padding: 16px 24px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  }
+
+  .filter-panel-offcanvas-only {
+    display: inherit;
+  }
+
+  .filter-panel {
+    padding: 0 24px 24px;
+  }
+}

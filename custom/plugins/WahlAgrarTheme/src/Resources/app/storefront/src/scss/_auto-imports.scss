@@ -11,7 +11,10 @@
    - ./base/_tokens.scss (tokens are imported explicitly in base.scss)
    ========================================================= */
 @import "component/category-navigation";
+@import "component/filter-multi-select";
+@import "component/filter-panel";
 @import "component/product-box";
+@import "component/sorting";
 @import "page/listing/listing";
 @import "skin/shopware/layout/header";
 @import "skin/shopware/layout/main-navigation";

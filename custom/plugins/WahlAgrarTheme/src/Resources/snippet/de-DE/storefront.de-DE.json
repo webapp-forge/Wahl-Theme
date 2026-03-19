@@ -1,2 +1,6 @@
 {
+    "listing": {
+        "filterTitleText": "Filter",
+        "sortByLabel": "Sortiert nach"
+    }
 }

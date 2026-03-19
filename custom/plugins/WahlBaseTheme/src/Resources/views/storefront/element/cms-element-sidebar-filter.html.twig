@@ -1,0 +1,89 @@
+{% sw_extends '@Storefront/storefront/element/cms-element-sidebar-filter.html.twig' %}
+
+{% block element_sidebar_filter %}
+    {% if cmsPage is defined %}
+        {% set config = element.fieldConfig.elements %}
+        {% set slot = cmsPage.getFirstElementOfType('product-listing') %}
+        {% set listing = slot.data.listing %}
+        {% set sidebar = block.sectionPosition == 'sidebar' %}
+    {% endif %}
+
+    {% if listing.aggregations.elements|length > 0 %}
+        <div class="cms-element-sidebar-filter">
+            <div class="filter-panel__head d-flex w-100 align-items-center flex-wrap">
+
+                <div class="col col-12 col-lg-6 d-flex align-items-center gap-3">
+                    {% block element_product_listing_filter_button %}
+
+                        {# Mobile-Button (öffnet Offcanvas) #}
+                        <button class="btn btn-additional filter-panel-wrapper-toggle filter__btn-mob"
+                                type="button"
+                                {% if feature('v6.6.0.0') %}
+                                    data-off-canvas-filter="true"
+                                {% else %}
+                                    data-offcanvas-filter="true"
+                                {% endif %}
+                                aria-haspopup="true"
+                                aria-expanded="false"
+                                aria-label="{{ "general.menuLink"|trans }}">
+                            <svg width="20" height="21" viewBox="0 0 20 21" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                                <path d="M18.3337 2.64355H1.66699L8.33366 10.5269V15.9769L11.667 17.6436V10.5269L18.3337 2.64355Z" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                            {{ "listing.filterTitleText"|trans }}
+                        </button>
+
+                        {# Desktop-Button (klappt Filterpanel auf/zu) #}
+                        {% if listing.total %}
+                            <button class="filter__btn-desktop btn btn-additional"
+                                    type="button"
+                                    data-bs-toggle="collapse"
+                                    data-bs-target="#filter-panel-wrapper"
+                                    aria-expanded="false"
+                                    aria-controls="filter-panel-wrapper">
+                                <svg width="20" height="21" viewBox="0 0 20 21" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                                    <path d="M18.3337 2.64355H1.66699L8.33366 10.5269V15.9769L11.667 17.6436V10.5269L18.3337 2.64355Z" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                                <span>{{ "listing.filterTitleText"|trans }}</span>
+                            </button>
+                        {% endif %}
+
+                        {# Positionsanzahl #}
+                        <span class="filter__count-products">
+                            {% if not listing.total %}
+                                0 {{ "listing.emptyResultMessage"|trans }}
+                            {% else %}
+                                {{ "checkout.itemCounter"|trans({'%count%': listing.total})|sw_sanitize }}
+                            {% endif %}
+                        </span>
+                    {% endblock %}
+                </div>
+
+                {# Sortierung (Desktop) #}
+                <div class="filter-panel-sorting col-12 col-lg-6 d-flex align-items-center justify-content-end mt-2 mt-lg-0">
+                    {% if slot is defined and slot.data.listing is defined %}
+                        {% sw_include '@Storefront/storefront/component/sorting.html.twig' with {
+                            current: slot.data.listing.sorting,
+                            sortings: slot.data.listing.availableSortings
+                        } %}
+                    {% endif %}
+                </div>
+            </div>
+
+            {% block element_sidebar_filter_panel %}
+                <div id="filter-panel-wrapper"
+                     class="filter-panel-wrapper collapse"
+                     {% if feature('v6.6.0.0') %}
+                         data-off-canvas-filter-content="true"
+                     {% else %}
+                         data-offcanvas-filter-content="true"
+                     {% endif %}
+                >
+                    {% sw_include '@Storefront/storefront/component/listing/filter-panel.html.twig' with {
+                        listing: listing,
+                        sidebar: sidebar
+                    } %}
+                </div>
+            {% endblock %}
+        </div>
+    {% endif %}
+{% endblock %}

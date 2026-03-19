@@ -1,5 +1,10 @@
+favicon
+
 UVP & LISTING PREISE
 auf Kili's Zusammenfassung warten.
 SWDEMO10001: nur Listenpreis
 SWDEMO10007: nur UVP
 SWDEMO10005: Listenpreis & UVP
+
+SNIPPETS
+Automatisiert alle abgleichen, pro Template + DB-Export aus Live?

@@ -13,6 +13,7 @@
   ],
   "script": [
     "@Storefront",
+    "@WahlBaseTheme",
     "app/storefront/dist/storefront/js/wahl-agrar-theme/wahl-agrar-theme.js"
   ],
   "asset": [
